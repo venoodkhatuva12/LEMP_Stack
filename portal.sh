@@ -65,34 +65,6 @@ echo "Configuring Nginx Conf..."
 sudo sed -i 's/mime.types/apps/nginx/conf/g' /apps/nginx/conf/nginx.conf
 sudo sed -i '5 i error_log   /apps/nginx/logs/error.log' /apps/nginx/conf/nginx.conf
 sudo sed -i '26 i access_log   /apps/nginx/logs/access.log' /apps/nginx/conf/nginx.conf
-config=" server {
-       listen       80;
-        server_name  service.eu.mooestro.com;
-        root         /apps/int_moofwd_portal/public;
-
-        index index.php index.html index.htm;
-        location / {
-                try_files $uri $uri/ /index.php$is_args$args;
-        }
-
-        location ~ \.php$ {
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass 127.0.0.1:9000;
-                fastcgi_index index.php;
-                include fastcgi_params;
-                fastcgi_param PATH_INFO       $fastcgi_path_info;
-
-                fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        }
-        location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
-                root /apps/int_moofwd_portal/public;
-        }
-        location ~ /\.ht {
-                deny all;
-        }
-    } "
-sudo sed -i "79 i $config" /apps/nginx/conf/nginx.conf
 sudo sed -i 's/index  index.html index.htm;/index index.php  index.html index.htm;/g' /apps/nginx/conf/nginx.conf
 
 cd ~/

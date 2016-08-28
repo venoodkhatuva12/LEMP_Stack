@@ -1,5 +1,5 @@
 #!/bin/bash
-#Script made for MooFwd LEMP installtion
+#Script made for Portal LEMP installtion
 #Author: Vinod.N K
 #Usage: Nginx, Mysql, PhP for portal installation
 #Distro : Linux -Centos, Rhel, and any fedora
@@ -120,8 +120,8 @@ yum install unzip
 #Now lets install Our Portal...
 echo "Installing Portal & Configuration..."
 cd /apps/
-git clone http://@git.moofwd.com/scm/profweb/int_moofwd_portal.git
-cd int_moofwd_portal
+git clone http://@git.domain.com/domain_portal.git
+cd domain_portal
 sudo chmod -R 777 apps public
 sudo  /usr/local/bin/composer update
 sudo  /usr/local/bin/composer dump-autoload

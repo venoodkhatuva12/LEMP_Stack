@@ -1,7 +1,7 @@
 #!/bin/bash
 #Script made for Application installtion
 #Author: Vinod.N K
-#Usage: Nginx, Java, PhP, OpenSSL, Gcc, for portal installation
+#Usage: Nginx, Java, PhP, OpenSSL, Gcc, Ulimit for portal installation
 #Distro : Linux -Centos, Rhel, and any fedora
 #Check whether root user is running the script
 if [ "$(id -u)" != "0" ]; then

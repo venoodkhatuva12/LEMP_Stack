@@ -56,9 +56,10 @@ sudo tar -zxvf nginx-1.9.9.tar.gz
 mv nginx-1.9.9 nginx
 cd nginx
 sudo mkdir /apps/nginx/logs/
-sudo /bin/bash configure --sbin-path=/apps/nginx/sbin/nginx --conf-path=/apps/nginx/conf/nginx.conf --error-log-path=/apps/nginx/logs/error.log --http-log-path=/apps/nginx/logs/access.log --with-http_ssl_module
+sudo /bin/bash configure --prefix=/apps/nginx --sbin-path=/apps/nginx/sbin/nginx --conf-path=/apps/nginx/conf/nginx.conf --pid-path=/apps/nginx/logs/nginx.pid --lock-path=/apps/nginx/logs/nginx.lock --with-http_stub_status_module --error-log-path=/apps/nginx/logs/error.log --http-log-path=/apps/nginx/logs/access.log --with-http_ssl_module --http-client-body-temp-path=/apps/nginx/body
 sudo make
 sudo make install
+useradd -r nginx
 
 # configuring Nginx with help of sed
 echo "Configuring Nginx Conf..."
@@ -66,6 +67,11 @@ sudo sed -i 's/mime.types/apps/nginx/conf/g' /apps/nginx/conf/nginx.conf
 sudo sed -i '5 i error_log   /apps/nginx/logs/error.log' /apps/nginx/conf/nginx.conf
 sudo sed -i '26 i access_log   /apps/nginx/logs/access.log' /apps/nginx/conf/nginx.conf
 sudo sed -i 's/index  index.html index.htm;/index index.php  index.html index.htm;/g' /apps/nginx/conf/nginx.conf
+sudo wget https://s3-eu-west-1.amazonaws.com/moofwd-devops/scripts/nginx_init
+sudo mv /apps/nginx_init /etc/init.d/nginx
+sudo chmod 755 /etc/init.d/nginx
+sudo chkconfig --add nginx
+sudo chkconfig --level 345 nginx on
 
 cd ~/
 

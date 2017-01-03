@@ -108,7 +108,7 @@ sleep 3
 # Restarting Services
 echo "Restarting Services all services..."
 sudo service mysqld restart
-sudo /apps/nginx/sbin/nginx
+sudo service nginx restart
 
 # Set Up startup when ever rebooted the system we can put in rc.local also but i did it simple
 echo "Setting start service.."

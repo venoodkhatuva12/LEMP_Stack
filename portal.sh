@@ -16,6 +16,7 @@ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && r
 sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 # Yum update with new repo
+sudo yum install openssl-devel zlib-devel pcre*
 sudo yum update -y
 echo "Installing mysql with database...."
 
@@ -64,8 +65,8 @@ useradd -r nginx
 # configuring Nginx with help of sed
 echo "Configuring Nginx Conf..."
 sudo sed -i 's/mime.types/apps/nginx/conf/g' /apps/nginx/conf/nginx.conf
-sudo sed -i '5 i error_log   /apps/nginx/logs/error.log' /apps/nginx/conf/nginx.conf
-sudo sed -i '26 i access_log   /apps/nginx/logs/access.log' /apps/nginx/conf/nginx.conf
+sudo sed -i '5 i error_log   /apps/nginx/logs/error.log;' /apps/nginx/conf/nginx.conf
+sudo sed -i '26 i access_log   /apps/nginx/logs/access.log;' /apps/nginx/conf/nginx.conf
 sudo sed -i 's/index  index.html index.htm;/index index.php  index.html index.htm;/g' /apps/nginx/conf/nginx.conf
 sudo wget https://s3-eu-west-1.amazonaws.com/moofwd-devops/scripts/nginx_init
 sudo mv nginx_init /etc/init.d/nginx
@@ -79,7 +80,7 @@ sleep 3
 
 # Install PHP v5.4
 echo "Installing PHP v5.4..."
-sudo yum --enablerepo=remi install -y php-fpm php-mysql php-cli php-mcrypt php-gd php-mssql php-pgsql php-mbstring php-xm
+sudo yum --enablerepo=remi install -y php-fpm php-mysql php-cli php-mcrypt php-gd php-mssql php-pgsql php-mbstring php-xml
 sleep 3
 
 # Install Composer

@@ -68,7 +68,7 @@ sudo sed -i '5 i error_log   /apps/nginx/logs/error.log' /apps/nginx/conf/nginx.
 sudo sed -i '26 i access_log   /apps/nginx/logs/access.log' /apps/nginx/conf/nginx.conf
 sudo sed -i 's/index  index.html index.htm;/index index.php  index.html index.htm;/g' /apps/nginx/conf/nginx.conf
 sudo wget https://s3-eu-west-1.amazonaws.com/moofwd-devops/scripts/nginx_init
-sudo mv /apps/nginx_init /etc/init.d/nginx
+sudo mv nginx_init /etc/init.d/nginx
 sudo chmod 755 /etc/init.d/nginx
 sudo chkconfig --add nginx
 sudo chkconfig --level 345 nginx on

@@ -16,7 +16,7 @@ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && r
 sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 # Yum update with new repo
-sudo yum install openssl-devel zlib-devel pcre*
+sudo yum install openssl-devel zlib-devel pcre* -y
 sudo yum update -y
 echo "Installing mysql with database...."
 

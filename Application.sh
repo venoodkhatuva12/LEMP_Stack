@@ -72,7 +72,10 @@ sudo alternatives --set jar /apps/java7/bin/jar
 sudo alternatives --set javac /apps/java7/bin/javac
 sudo /apps/java7/bin/java -version
 sudo java –version
-echo "export JAVA_HOME=/apps/java7/bin/java" > /etc/profile.d/java_path.sh
+echo '#JAVA Path Setting
+export JAVA_HOME=/apps/java7
+export JRE_HOME=/apps/java7/jre
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin' > /etc/profile.d/java_path.sh
 chmod 755 /etc/profile.d/java_path.sh
 
 # Install Nginx v1.9

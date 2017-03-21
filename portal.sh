@@ -17,11 +17,11 @@ sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 # Yum update with new repo
 sudo yum install openssl-devel zlib-devel pcre* -y
-sudo yum update -y
-echo "Installing mysql with database...."
+sudo yum --enablerepo=remi,remi-php56 update -y && sudo yum --enablerepo=remi,remi-php56 upgrade -y
 
 
-# Install MySQL v5
+echo "Installing MySQL DB...."
+# Install MySQL v5.5
 echo "Installing MySQL..."
 sudo yum install -y mysql mysql-server
 echo "Configuring MySQL data-dir..."
@@ -80,7 +80,7 @@ sleep 3
 
 # Install PHP v5.4
 echo "Installing PHP v5.4..."
-sudo yum --enablerepo=remi install -y php-fpm php-mysql php-cli php-mcrypt php-gd php-mssql php-pgsql php-mbstring php-xml
+sudo yum --enablerepo=remi,remi-php56 install -y php-fpm php-mysql php-cli php-mcrypt php-gd php-mssql php-pgsql php-mbstring php-xml
 sleep 3
 
 # Install Composer

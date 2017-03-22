@@ -11,6 +11,9 @@ sudo yum groupinstall "Development Tools" -y
 sudo yum install screen -y
 
 # Remi-Repo for mysql and php
+echo "Installing MySQL 5.6 repo..."
+sudo yum install wget && wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el6-5.noarch.rpm
 echo "Installing the Remi Repo..."
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && rpm -Uvh epel-release-latest-6.noarch.rpm
 sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo

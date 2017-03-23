@@ -28,8 +28,6 @@ echo "Installing MySQL DB...."
 echo "Installing MySQL..."
 sudo yum install -y mysql mysql-server
 echo "Configuring MySQL data-dir..."
-sudo sed -i /datadir/d /etc/my.cnf
-sudo sed -i '4 i datadir=/var/lib/mysql' /etc/my.cnf
 sudo /etc/init.d/mysqld restart
 # password for root user of mysql
 read -p "Please Enter the Password for New User root : " pass

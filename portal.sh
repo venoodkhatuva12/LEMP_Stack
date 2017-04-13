@@ -16,8 +16,8 @@ sudo yum install wget && wget http://repo.mysql.com/mysql-community-release-el6-
 sudo rpm -ivh mysql-community-release-el6-5.noarch.rpm
 echo "Installing the Remi Repo..."
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && rpm -Uvh epel-release-latest-6.noarch.rpm
-sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 
 # Yum update with new repo
 sudo yum --enablerepo=remi,remi-php56 update -y && sudo yum --enablerepo=remi,remi-php56 upgrade -y

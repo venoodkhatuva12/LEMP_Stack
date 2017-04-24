@@ -81,9 +81,9 @@ chmod 755 /etc/profile.d/java_path.sh
 # Install Nginx v1.9
 cd /apps/
 echo "Installing Nginx from source..."
-wget http://nginx.org/download/nginx-1.8.1.tar.gz
-sudo tar -zxvf nginx-1.8.1.tar.gz
-mv nginx-1.8.1 nginx
+wget http://nginx.org/download/nginx-1.9.9.tar.gz
+sudo tar -zxvf nginx-1.9.9.tar.gz
+mv nginx-1.9.9 nginx
 cd nginx
 sudo mkdir /apps/nginx/logs/
 sudo /bin/bash configure --prefix=/apps/nginx --sbin-path=/apps/nginx/sbin/nginx --conf-path=/apps/nginx/conf/nginx.conf --pid-path=/apps/nginx/logs/nginx.pid --lock-path=/apps/nginx/logs/nginx.lock --with-http_stub_status_module --error-log-path=/apps/nginx/logs/error.log --http-log-path=/apps/nginx/logs/access.log --with-http_ssl_module --http-client-body-temp-path=/apps/nginx/body

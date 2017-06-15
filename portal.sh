@@ -61,7 +61,7 @@ sudo mkdir /apps/nginx/logs/
 sudo /bin/bash configure --prefix=/apps/nginx --sbin-path=/apps/nginx/sbin/nginx --conf-path=/apps/nginx/conf/nginx.conf --pid-path=/apps/nginx/logs/nginx.pid --lock-path=/apps/nginx/logs/nginx.lock --with-http_stub_status_module --error-log-path=/apps/nginx/logs/error.log --http-log-path=/apps/nginx/logs/access.log --with-http_ssl_module --http-client-body-temp-path=/apps/nginx/body
 sudo make
 sudo make install
-useradd -r nginx
+useradd -s /bin/false nginx
 
 # configuring Nginx with help of sed
 echo "Configuring Nginx Conf..."

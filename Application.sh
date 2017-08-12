@@ -22,6 +22,7 @@ sudo sed -i '61 i *	soft	nofile	99999' /etc/security/limits.conf
 sudo sed -i '62 i *	hard	nofile	99999' /etc/security/limits.conf
 sudo sed -i '63 i *	soft	noproc	20000' /etc/security/limits.conf
 sudo sed -i '64 i *	hard	noproc	20000' /etc/security/limits.conf
+echo "fs.file-max=6816768" >> /etc/sysctl.conf
 sudo sysctl -w fs.file-max=6816768
 sudo sysctl -p
 
@@ -77,6 +78,7 @@ export JAVA_HOME=/apps/java7
 export JRE_HOME=/apps/java7/jre
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin' > /etc/profile.d/java_path.sh
 chmod 755 /etc/profile.d/java_path.sh
+source /etc/profile.d/java_path.sh
 
 # Install Nginx v1.9
 cd /apps/

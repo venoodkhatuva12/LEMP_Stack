@@ -10,10 +10,7 @@ sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 sudo yum install screen -y
 
-# Remi-Repo for mysql and php
-echo "Installing MySQL 5.6 repo..."
-sudo yum install wget && wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
-sudo rpm -ivh mysql-community-release-el6-5.noarch.rpm
+# Epel & Remi-Repo for mysql and php
 echo "Installing the Remi Repo..."
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && rpm -Uvh epel-release-latest-6.noarch.rpm
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
@@ -26,7 +23,7 @@ sudo yum install openssl-devel zlib-devel pcre* -y
 echo "Installing MySQL DB...."
 # Install MySQL v5.5
 echo "Installing MySQL..."
-sudo yum install -y mysql mysql-server
+sudo yum --enablerepo=remi,remi-php56 install -y mysql mysql-server
 echo "Configuring MySQL data-dir..."
 sudo /etc/init.d/mysqld restart
 # password for root user of mysql
@@ -79,8 +76,8 @@ cd ~/
 
 sleep 3
 
-# Install PHP v5.4
-echo "Installing PHP v5.4..."
+# Install PHP v5.5
+echo "Installing PHP v5.5..."
 sudo yum --enablerepo=remi,remi-php56 install -y php-fpm php-mysql php-cli php-mcrypt php-gd php-mssql php-pgsql php-mbstring php-xml
 sleep 3
 

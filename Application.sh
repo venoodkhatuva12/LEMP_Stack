@@ -63,19 +63,19 @@ echo "Installed MySQL & update new user completed..."
 # Installing Java7
 cd /apps/
 echo "Downloading & Installing  Java7..."
-wget https://s3-us-west-2.amazonaws.com/moofwd-softwares/java7.zip
-sudo unzip java7.zip
-sudo alternatives --install /usr/bin/java java /apps/java7/bin/java 1
+wget https://s3.amazonaws.com/zubron-server-1.0/Java8.zip
+sudo unzip Java8.zip
+sudo alternatives --install /usr/bin/java java /apps/java8/bin/java 1
 sudo alternatives --config java
-sudo alternatives --install /usr/bin/jar jar /apps/java7/bin/jar 1
-sudo alternatives --install /usr/bin/javac javac /apps/java7/bin/javac 1
-sudo alternatives --set jar /apps/java7/bin/jar
-sudo alternatives --set javac /apps/java7/bin/javac
-sudo /apps/java7/bin/java -version
+sudo alternatives --install /usr/bin/jar jar /apps/java8/bin/jar 1
+sudo alternatives --install /usr/bin/javac javac /apps/java8/bin/javac 1
+sudo alternatives --set jar /apps/java8/bin/jar
+sudo alternatives --set javac /apps/java8/bin/javac
+sudo /apps/java8/bin/java -version
 sudo java –version
 echo '#JAVA Path Setting
-export JAVA_HOME=/apps/java7
-export JRE_HOME=/apps/java7/jre
+export JAVA_HOME=/apps/java8
+export JRE_HOME=/apps/java8/jre
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin' > /etc/profile.d/java_path.sh
 chmod 755 /etc/profile.d/java_path.sh
 source /etc/profile.d/java_path.sh

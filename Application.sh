@@ -50,17 +50,15 @@ sudo /usr/bin/mysqladmin -u root password "$pass"
 sleep 2
 #ask user about username
 read -p "Please enter the username you wish to create : " username
-#ask user about allowed hostname
-read -p "Please Enter Host To Allow Access Eg: %,ip or hostname : " host
 #ask user about password
 read -p "Please Enter the Password for New User ($username) : " password
 
 #mysql query that will create new user, grant privileges on database with entered password
-mysql -uroot -p"$pass" -e "GRANT ALL PRIVILEGES ON dbname.* TO '$username'@'$host' IDENTIFIED BY '$password'"
+mysql -uroot -p"$pass" -e "GRANT ALL PRIVILEGES ON dbname.* TO '$username'@'localhost' IDENTIFIED BY '$password'"
 
 echo "Installed MySQL & update new user completed..."
 
-# Installing Java7
+# Installing Java8
 cd /apps/
 echo "Downloading & Installing  Java8..."
 wget https://s3.amazonaws.com/zubron-server-1.0/Java8.zip
@@ -105,10 +103,11 @@ sudo chkconfig --add nginx
 sudo chkconfig --level 345 nginx on
 
 #Cleaning /apps path
-sudo rm -rf /apps/nginx-1.8.1.tar.gz
+sudo rm -rf /apps/nginx-1.9.9.tar.gz
 sudo rm -rf /apps/Java8.zip
 
 ##Now lets install Our Portal...
 echo "Installing Portal & Configuration..."
 sudo wget https://weblog.com/application.bin
 sudo chmod 755 application.bin
+sudo ./application.bin

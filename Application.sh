@@ -62,7 +62,7 @@ echo "Installed MySQL & update new user completed..."
 
 # Installing Java7
 cd /apps/
-echo "Downloading & Installing  Java7..."
+echo "Downloading & Installing  Java8..."
 wget https://s3.amazonaws.com/zubron-server-1.0/Java8.zip
 sudo unzip Java8.zip
 sudo alternatives --install /usr/bin/java java /apps/java8/bin/java 1
@@ -106,7 +106,7 @@ sudo chkconfig --level 345 nginx on
 
 #Cleaning /apps path
 sudo rm -rf /apps/nginx-1.8.1.tar.gz
-sudo rm -rf /apps/java7.zip
+sudo rm -rf /apps/Java8.zip
 
 ##Now lets install Our Portal...
 echo "Installing Portal & Configuration..."

@@ -33,8 +33,8 @@ sudo sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
 sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 # Yum update with new repo
 sudo yum update -y
-echo "Installing mysql with database...."
 
+echo "Installing mysql with database...."
 
 # Install MySQL v5
 echo "Installing MySQL..."
@@ -108,6 +108,66 @@ sudo rm -rf /apps/Java8.zip
 
 ##Now lets install Our Portal...
 echo "Installing Portal & Configuration..."
-sudo wget https://weblog.com/application.bin
-sudo chmod 755 application.bin
-sudo ./application.bin
+sudo groupadd tomcat
+sudo mkdir /apps/tomcat8
+sudo useradd -s /bin/nologin -g tomcat -d /apps/tomcat8 tomcat
+
+cd /apps
+wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.tar.gz
+sudo tar -zxvf apache-tomcat-8.0.33.tar.gz -C /apps/tomcat8 --strip-components=1
+cd /apps/tomcat8
+sudo chgrp -R tomcat conf && sudo chmod g+rwx conf && sudo chmod g+r conf/* && sudo chown -R tomcat logs/ temp/ webapps/ work/ && sudo chgrp -R tomcat bin && sudo chgrp -R tomcat lib && sudo chmod g+rwx bin && sudo chmod g+r bin/*
+echo '#!/bin/bash
+
+# Tomcat8: Start/Stop Tomcat 8
+#
+# chkconfig: - 90 10
+# description: Tomcat is a Java application Server.
+
+. /etc/init.d/functions
+. /etc/sysconfig/network
+
+CATALINA_HOME=/apps/tomcat8
+TOMCAT_USER=tomcat8
+
+LOCKFILE=/var/lock/subsys/tomcat8
+
+RETVAL=0
+start(){
+    echo "Starting Tomcat8: "
+    su - $TOMCAT_USER -c "$CATALINA_HOME/bin/startup.sh"
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $LOCKFILE
+    return $RETVAL
+}
+
+stop(){
+    echo "Shutting down Tomcat8: "
+    $CATALINA_HOME/bin/shutdown.sh
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $LOCKFILE
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+exit $?' >> /etc/init.d/tomcat8
+sudo chkconfig --add tomcat8
+sudo chkconfig tomcat8 on
+sudo /etc/init.d/tomcat8 start

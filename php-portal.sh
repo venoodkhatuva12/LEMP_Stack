@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #Script made for PHP Portal installtion
 #Author: Vinod.N K
 #Usage: Nginx, Mysql, PhP7, Mongodb, Node for portal installation
